@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<input id="box" type="text">
+	<button id="butt">Generate List</button>
+	<button id="keyButt">Generate Keys</button>
+	<ul id="list"></ul>
+	<ul id="keyList"></ul>
+<script>
+var input = document.getElementById('box'),
+		button = document.getElementById('butt'),
+		keyButton = document.getElementById('keyButt'),
+		list = document.getElementById('list');
+
+function writeList(text) {
+	list.innerHTML += `<li>${text}</li>`;
+}
+
+function writeKeys(text) {
+	keyList.innerHTML += `<li>${text}</li>`;
+}
+
+button.addEventListener('click', function() {
+	var url = "http://jsonplaceholder.typicode.com/" + document.getElementById('box').value;
+	while (list.firstChild) list.removeChild(list.firstChild);
+	callList(url);
+})
+
+keyButton.addEventListener('click', function() {
+	var url = "http://jsonplaceholder.typicode.com/" + document.getElementById('box').value;
+	while (keyList.firstChild) keyList.removeChild(keyList.firstChild);
+	callKeys(url);
+})
+
+function callList(url) {
+	var request = new XMLHttpRequest();
+	request.open('GET', url, true);
+	request.onload = function() {
+		if (request.status >= 200 && request.status < 400) {
+			var data = JSON.parse(request.responseText);
+			data.map(function(x) {
+				if (input.value === "users") {
+					writeList(x.username);
+					console.log(Object.keys(x))
+				} else if (input.value === "posts") {
+					writeList(x.body);
+				}
+			});
+		} else {
+			console.log("There was an error")
+		}
+	};
+	request.onerror = function(error) {
+		console.log(error);
+	};
+	request.send();
+}
+
+function callKeys(url) {
+	var request = new XMLHttpRequest();
+	request.open('GET', url, true);
+	request.onload = function() {
+		if (request.status >= 200 && request.status < 400) {
+			var data = JSON.parse(request.responseText);
+			writeKeys(Object.keys(data[0]));
+		} else {
+			console.log("There was an error");
+		}
+	}
+	request.onerror = function(error) {
+		console.log(error);
+	};
+	request.send();
+}
+
+</script>
+</html>
