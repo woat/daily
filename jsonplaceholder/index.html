@@ -4,12 +4,13 @@
   <input id="box" type="text">
   <button id="butt">Generate List</button>
   <button id="keyButt">Generate Keys</button>
-  <ul id="list"></ul>
   <ul id="keyList"></ul>
+  <ul id="list"></ul>
 <script>
 var input = document.getElementById('box'),
     button = document.getElementById('butt'),
     keyButton = document.getElementById('keyButt'),
+    keyList = document.getElementById('keyList'),
     list = document.getElementById('list');
 
 function writeList(text) {
@@ -48,7 +49,6 @@ function callList(url, key) {
       var data = JSON.parse(request.responseText);
       if (key) {
         data.map(function(x) {
-          var poop = 'email';
           writeList(x[key])
         })
       } else { 
