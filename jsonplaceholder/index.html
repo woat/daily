@@ -53,11 +53,7 @@ function callList(url, key) {
         })
       } else { 
         data.map(function(x) {
-          if (input.value === "users") {
-            writeList(x.username);
-          } else if (input.value === "posts") {
-            writeList(x.body);
-          }
+            writeList(JSON.stringify(x, null, 2));
         });
       }
     } else {
