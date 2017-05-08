@@ -36,9 +36,16 @@ button.addEventListener('click', function() {
 })
 
 keyButton.addEventListener('click', function() {
-  var url = "http://jsonplaceholder.typicode.com/" + input.value;
-  while (keyList.firstChild) keyList.removeChild(keyList.firstChild);
-  callKeys(url);
+  if (input.value.includes(".")) {
+    var inputParams = input.value.split('.'),
+        url = "http://jsonplaceholder.typicode.com/" + inputParams[0];
+    while (keyList.firstChild) keyList.removeChild(keyList.firstChild);
+    callKeys(url);
+  } else {
+    var url = "http://jsonplaceholder.typicode.com/" + input.value;
+    while (keyList.firstChild) keyList.removeChild(keyList.firstChild);
+    callKeys(url);
+  }
 })
 
 function callList(url, key) {
