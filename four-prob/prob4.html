@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<script>
+//Write a function that given a list of non negative integers, arranges them such that they form the largest possible number. For example, given [50, 2, 1, 9], the largest formed number is 95021.
+
+const numList = [50, 2, 1, 9];
+  
+function largestPoss(list) {
+  let strNum = list.map(String);
+      strNum = strNum.join('')
+                     .split('')
+                     .map(x => parseInt(x))
+                     .sort((a,b) => b - a)
+                     .join('');
+  
+  return parseInt(strNum);
+}
+
+console.log(largestPoss(numList));
+</script>
+</html>

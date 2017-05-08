@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<script>
+//Write three functions that compute the sum of the numbers in a given list using a for-loop, a while-loop, and recursion.    
+const numList = [3, 5, 9, 10];
+
+function forAdd(list) {
+  var sum = 0;
+  for (var i = 0; i < list.length; i++) {
+    sum += list[i];
+  }
+  return sum;
+}
+
+function whileAdd(list) {
+  var sum = 0,
+    i = 0;
+  while (i < list.length) {
+    sum += list[i];
+    i++;
+  }
+  return sum;
+} 
+
+function recursiveAdd(list) {
+  if (list.length === 1) {
+    return list[0]
+  } else {
+    return list.pop() + recursiveAdd(list);
+  }
+}
+console.log(forAdd(numList));
+console.log(whileAdd(numList));
+console.log(recursiveAdd(numList));
+</script>
+</html>
