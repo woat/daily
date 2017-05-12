@@ -2,6 +2,7 @@ const button = document.getElementById('button'),
       city = document.getElementById('city'),
       icon = document.getElementById('icon'),
       main = document.getElementById('main'),
+      temp = document.getElementById('temp'),
       input = document.getElementById('input');
 
 function callWeatherData(zip) {
@@ -16,7 +17,7 @@ function callWeatherData(zip) {
       writeCityName(data.name)
       writeWeatherIcon(data.weather[0].icon)
       writeWeatherMain(data.weather[0].main)
-      console.log(data.wind);
+      writeWeatherTemp(data.main.temp)
     } else {
       console.log("Error")
     }
@@ -42,4 +43,9 @@ function writeWeatherIcon(id) {
 
 function writeWeatherMain(condition) {
   main.innerHTML = condition;
+}
+
+function writeWeatherTemp(kelv) {
+  kelv = 1.8 * (kelv - 273) + 32;
+  temp.innerHTML = `${Math.round(kelv)} &deg;F`;
 }
