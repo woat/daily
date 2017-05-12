@@ -1,0 +1,104 @@
+strong {
+  color: inherit;
+}
+
+.nav-bg {
+  background-color: #FCFFF5;
+}
+
+.nav-item {
+  color: #91AA9D;
+}
+
+.nav-item img {
+  max-height: 4rem;
+}
+
+span.nav-logo {
+  line-height: 1.2em;
+  font-size: 1.3em;
+  font-family: 'Lobster Two';
+  text-align: left;
+}
+
+a.nav-link {
+  color: #91AA9D;
+  transition: 0.5s;
+}
+
+a.nav-link:hover {
+  color: #193441;
+}
+
+.flowers {
+  background-image: linear-gradient( rgba(25,52,65,0.1),rgba(25,52,65,0.9) ), url('../img/bg.jpg');
+  background-repeat: no-repeat;
+  background-position: top center;
+}
+
+.is-blue{
+  background-color: #193441;
+}
+
+.header-text {
+  font-family: 'Roboto';
+  font-size: 4em;
+  color: #fff;
+}
+
+.header-text.vision {
+  color: #3E606F;
+}
+
+.header-subtext {
+  font-family: 'Lato';
+  font-size: 1em;
+  color: #fff;
+}
+
+.header-subtext.vision {
+  font-family: 'Lato';
+  font-size: 2.5em;
+  color: #3E606F;
+}
+
+.header-subtext.text {
+  font-size: 1.3em;
+  color: #36393B;
+}
+
+.hide {
+  display: none !important;
+}
+
+.required {
+  color: grey;
+}
+
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 667px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+.hero-body {
+    flex-grow: 1;
+    flex-shrink: 0;
+    padding: 3rem 1.5rem;
+    padding-top: 100px;
+}
+
+.nav {
+    align-items: stretch;
+    background-color: white;
+    display: flex;
+    min-height: 3.5rem;
+    position: fixed;
+    text-align: center;
+    z-index: 2;
+    min-width: 100%;
+  }
+}
+
+font-family: 'Roboto', sans-serif;
+font-family: 'Lato', sans-serif;
+font-family: 'Lobster Two', cursive;
