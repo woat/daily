@@ -14,9 +14,13 @@ config2.textColor = "#F60A20";
 config2.waveTextColor = "#F2F2F2";
 config2.waveColor = "#F60A20";
 config2.circleThickness = 0.1;
-config2.textVertPosition = 0.4;
+config2.textVertPosition = 0.5;
 config2.waveAnimateTime = 1000;
-var gauge2= loadLiquidFillGauge("fillgauge2", 25.6, config2);
+config2.maxValue = 4000000;
+config2.textSize = 0.5;
+config2.displayPercent = false;
+config2.displayDollar = true;
+var gauge2= loadLiquidFillGauge("fillgauge2", 2920000, config2);
 
 var config3 = liquidFillGaugeDefaultSettings();
 config3.circleColor = "F60A20";
@@ -26,5 +30,7 @@ config3.waveColor = "#F60A20";
 config3.circleThickness = 0.1;
 config3.textVertPosition = 0.4;
 config3.waveAnimateTime = 1000;
-var gauge3= loadLiquidFillGauge("fillgauge3", 25.6, config3);
+config3.maxValue = 50;
+config3.displayPercent = false;
+var gauge3= loadLiquidFillGauge("fillgauge3", 39, config3);
 

@@ -25,6 +25,7 @@ function liquidFillGaugeDefaultSettings(){
         textSize: 1, // The relative height of the text to display in the wave circle. 1 = 50%
         valueCountUp: true, // If true, the displayed value counts up from 0 to it's final value upon loading. If false, the final value is displayed.
         displayPercent: true, // If true, a % symbol is displayed after the value.
+        displayDollar: false,
         textColor: "#045681", // The color of the value text when the wave does not overlap it.
         waveTextColor: "#A4DBf8" // The color of the value text when the wave overlaps it.
     };
@@ -54,6 +55,7 @@ function loadLiquidFillGauge(elementId, value, config) {
     var textFinalValue = parseFloat(value).toFixed(2);
     var textStartValue = config.valueCountUp?config.minValue:textFinalValue;
     var percentText = config.displayPercent?"%":"";
+    var dollarText = config.displayDollar?"$":"";
     var circleThickness = config.circleThickness * radius;
     var circleFillGap = config.circleFillGap * radius;
     var fillCircleMargin = circleThickness + circleFillGap;
@@ -72,6 +74,8 @@ function loadLiquidFillGauge(elementId, value, config) {
     if(parseFloat(textFinalValue) != parseFloat(textRounder(textFinalValue))){
         textRounder = function(value){ return parseFloat(value).toFixed(2); };
     }
+    
+    var commaFormat = function(value) { return value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"); };
 
     // Data for building the clip wave area.
     var data = [];
@@ -120,7 +124,7 @@ function loadLiquidFillGauge(elementId, value, config) {
 
     // Text where the wave does not overlap.
     var text1 = gaugeGroup.append("text")
-        .text(textRounder(textStartValue) + percentText)
+        .text(dollarText + commaFormat(textRounder(textStartValue)) + percentText)
         .attr("class", "liquidFillGaugeText")
         .attr("text-anchor", "middle")
         .attr("font-size", textPixels + "px")
@@ -151,7 +155,7 @@ function loadLiquidFillGauge(elementId, value, config) {
 
     // Text where the wave does overlap.
     var text2 = fillCircleGroup.append("text")
-        .text(textRounder(textStartValue) + percentText)
+        .text(dollarText + commaFormat(textRounder(textStartValue)) + percentText)
         .attr("class", "liquidFillGaugeText")
         .attr("text-anchor", "middle")
         .attr("font-size", textPixels + "px")
@@ -162,7 +166,7 @@ function loadLiquidFillGauge(elementId, value, config) {
     if(config.valueCountUp){
         var textTween = function(){
             var i = d3.interpolate(this.textContent, textFinalValue);
-            return function(t) { this.textContent = textRounder(i(t)) + percentText; }
+            return function(t) { this.textContent = dollarText + commaFormat(textRounder(i(t))) + percentText; }
         };
         text1.transition()
             .duration(config.waveRiseTime)
@@ -212,7 +216,7 @@ function loadLiquidFillGauge(elementId, value, config) {
 
             var textTween = function(){
                 var i = d3.interpolate(this.textContent, parseFloat(value).toFixed(2));
-                return function(t) { this.textContent = textRounderUpdater(i(t)) + percentText; }
+                return function(t) { this.textContent = dollarText + commaFormat(textRounderUpdater(i(t))) + percentText; }
             };
 
             text1.transition()
