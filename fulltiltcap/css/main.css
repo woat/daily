@@ -1,0 +1,78 @@
+a {
+  color: #404040;
+  transition: 0.7s;
+}
+
+a:hover {
+  color: #F60A20 !important;
+}
+
+body {
+  color: #404040;
+}
+
+/* .center-gauges { */
+/*   display: flex; */
+/*   align-items: center; */
+/*   justify-content: center; */
+/* } */
+
+.logo {
+  mask: #F60A20;
+}
+
+.nav {
+  height: auto;
+}
+
+.nav-item {
+  line-height: 0.8;
+}
+
+.nav-item a, a.nav-item {
+    color: #404040;
+    font-family: 'Muli';
+    font-size: 1.1em;
+    letter-spacing: 2px;
+}
+
+.nav-item img {
+  max-height: none;
+}
+
+.fulltilt {
+  text-align: left;
+  font-family: 'Raleway';
+  font-size: 1.3em;
+  font-variant: small-caps;
+  letter-spacing: 2px;
+  color: #262526;
+  padding-left: 0.3em;
+}
+
+.statement {
+  font-family: 'Muli';
+  font-size: 4.5em;
+}
+
+.red {
+  color: #F60A20;
+}
+
+.dark-grey {
+  color: #262526;
+}
+
+.hide {
+  opacity: 0;
+  transition: 0.7s;
+}
+
+.hide:hover {
+  opacity: 1;
+}
+
+.liquidFillGaugeText { font-family: Helvetica; font-weight: bold; }
+
+font-family: 'Muli', sans-serif;
+font-family: 'Raleway', sans-serif;

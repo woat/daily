@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:700|Raleway:900">
+  <link rel="stylesheet" href="./css/main.css">
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="./js/liquid.js"></script>
+
+  <section class="hero is-fullheight">
+    <div class="hero-head">
+      <header class="nav">
+        <div class="container">
+          <div class="nav-left">
+            <div class="nav-item">
+              <img class="logo" src="http://icon-icons.com/icons2/37/PNG/64/cards_4151.png">
+              <span class="fulltilt">full<br><span class="red">tilt</span><br>capital</span>
+            </div>
+          </div>
+
+          <div class="nav-right">
+            <a class="nav-item fulltilt" data-hover="strategy">strategy</a>
+            <a class="nav-item fulltilt" data-hover="investments">companies</a>
+            <a class="nav-item fulltilt" data-hover="investments">contact</a>
+          </div>
+          </div>
+        </div>
+      </header>
+    </div>
+
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <p class="statement">Full Tilt is the early-stage venture&nbsp;capital fund reinventing <span class="red">friends and family investing.</span></p>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <a href="#sec2" class="fa-stack fa-4x scroll">
+            <i class="fa fa-lg fa-stack-1x fa-angle-down dark-gray" aria-hidden="true"></i>
+            <i class="fa fa-stack-2x fa-circle-thin hide red" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+  </section>
+
+  <section class="hero is-fullheight" id="sec2">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <div class="columns">
+          <div class="column is-4">
+          <svg id="fillgauge1" height="200" onclick="gauge1.update(NewValue());"></svg>
+        </div>
+        <div class="column is-4">
+          <svg id="fillgauge2" height="350" onclick="gauge2.update(NewValue());"></svg>
+        </div>
+        <div class="column is-4">
+          <svg id="fillgauge3" height="200" onclick="gauge3.update(NewValue());"></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- <section class="hero is-fullheight" id="sec2"> -->
+  <!--   <div class="hero-body"> -->
+  <!--     <div class="container has-text-centered"> -->
+  <!--       <div class="center-gauges"> -->
+  <!--         <svg id="fillgauge1" width="19%" height="200" onclick="gauge1.update(NewValue());"></svg> -->
+  <!--         <svg id="fillgauge2" width="55%" height="350" onclick="gauge2.update(NewValue());"></svg> -->
+  <!--         <svg id="fillgauge3" width="19%" height="200" onclick="gauge3.update(NewValue());"></svg> -->
+  <!--       </div> -->
+  <!--     </div> -->
+  <!--   </div> -->
+  <!-- </section> -->
+
+  <script src="./js/gauge.js"></script>
+  <script src="./js/scroll.js"></script>
+</html>
