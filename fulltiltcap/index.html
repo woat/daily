@@ -2,8 +2,8 @@
 <html>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:700|Raleway:600,900">
-  <!-- <link rel="stylesheet" href="./css/main.css"> -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:700|Raleway:500,600,900">
+  <link rel="stylesheet" href="./css/main.css">
   <meta charset="utf-8">
   <meta name="description" content="Full Tilt Capital">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,26 +15,29 @@
       <header class="nav">
         <div class="container">
           <div class="nav-left">
-            <div class="nav-item">
+            <a class="nav-item">
               <img class="logo" src="http://icon-icons.com/icons2/37/PNG/64/cards_4151.png">
               <span class="fulltilt">full<br><span class="red">tilt</span><br>capital</span>
-            </div>
+            </a>
           </div>
-          <div class="nav-right">
-            <a class="nav-item fulltilt" data-hover="strategy">strategy</a>
-            <a class="nav-item fulltilt" data-hover="investments">companies</a>
-            <a class="nav-item fulltilt" data-hover="investments">contact</a>
+          <span id="nav-toggle" class="nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+          <div id="nav-menu" class="nav-right nav-menu">
+            <a class="nav-item" href="#"><span class="fulltilt nav-red">strategy</span></a>
+            <a class="nav-item" href="#"><span class="fulltilt nav-red">companies</span></a>
+            <a class="nav-item" href="#"><span class="fulltilt nav-red">contact</span></a>
           </div>
         </div>
       </header>
     </div>
-
     <div class="hero-body">
       <div class="container has-text-centered">
         <p class="statement">Full Tilt is the early-stage venture&nbsp;capital fund reinventing <span class="red">friends and family investing.</span></p>
       </div>
     </div>
-
     <div class="hero-foot">
       <div class="container has-text-centered">
         <a href="#sec2" class="fa-stack fa-4x scroll">
@@ -43,22 +46,33 @@
         </a>
       </div>
     </div>
+  </section>
 
-  </div>
-</section>
-
-  <section class="hero is-fullheight" id="sec2">
+  <section class="hero is-small">
     <div class="hero-body">
       <div class="container has-text-centered">
-        <div class="columns">
+        <p class="statement">
+          We are Biotech.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="sec2" class="hero is-small">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns has-text-centered">
           <div class="column is-4">
-            <svg id="fillgauge1" height="200" onclick="gauge1.update(NewValue());"></svg>
+            <p class="small-circle circle-subheader"><span class="circle-header">Portfolio</span><br>39 investments out of the 100+ we expect in the next 18 months.</p>
+            <svg id="fillgauge3" height="200" onclick="gauge3.update(NewValue());"></svg>
           </div>
           <div class="column is-4">
+            <p class="circle-subheader"><span class="circle-header">Equity Invested</span><br>$2,290,000 deployed projected out of $7,500,000.</p>
             <svg id="fillgauge2" height="350" onclick="gauge2.update(NewValue());"></svg>
           </div>
           <div class="column is-4">
-            <svg id="fillgauge3" height="200" onclick="gauge3.update(NewValue());"></svg>
+            <p class="small-circle circle-subheader"><span class="circle-header">Founders</span><br>25.6% of our founder teams are currently leadby females.</p>
+            <svg id="fillgauge1" max-width="auto" height="200" onclick="gauge1.update(NewValue());"></svg>
           </div>
         </div>
       </div>
@@ -66,5 +80,6 @@
   </section>
 
   <script src="./js/gauge.js"></script>
+  <script src="./js/menu.js"></script>
   <script src="./js/scroll.js"></script>
 </html>

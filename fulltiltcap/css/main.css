@@ -7,6 +7,14 @@ a:hover {
   color: #F60A20 !important;
 }
 
+span.nav-red {
+  transition: 0.7s;
+}
+
+span.nav-red:hover {
+  color: #F60A20 !important;
+}
+
 body {
   color: #404040;
 }
@@ -46,6 +54,22 @@ body {
 
 .hide:hover {
   opacity: 1;
+}
+
+.small-circle {
+  padding-top: 30px;
+  padding-bottom: 50px;
+}
+
+.circle-header {
+  font-family: 'Muli';
+  font-size: 1.50em;
+}
+
+.circle-subheader {
+  font-family: 'Raleway';
+  font-weight: 500;
+  font-size: 1em;
 }
 
 /* Bulma */
