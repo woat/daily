@@ -15,25 +15,6 @@ body {
   mask: #F60A20;
 }
 
-.nav {
-  height: auto;
-}
-
-.nav-item {
-  line-height: 0.8;
-}
-
-.nav-item a, a.nav-item {
-    color: #404040;
-    font-family: 'Muli';
-    font-size: 1.1em;
-    letter-spacing: 2px;
-}
-
-.nav-item img {
-  max-height: none;
-}
-
 .fulltilt {
   text-align: left;
   font-size: 1.3em;
@@ -67,7 +48,53 @@ body {
   opacity: 1;
 }
 
-.liquidFillGaugeText { font-family: Helvetica; font-weight: bold; }
+/* Bulma */
+
+.nav {
+  height: auto;
+}
+
+.nav-toggle {
+    height: auto;
+    width: 5rem;
+}
+
+.nav-item {
+  line-height: 0.8;
+}
+
+.nav-item a, a.nav-item {
+    color: #404040;
+    font-family: 'Muli';
+    font-size: 1.1em;
+    letter-spacing: 2px;
+}
+
+.nav-item img {
+  max-height: none;
+}
+
+.nav-toggle.is-active span {
+  background-color: #F60A20;
+}
+
+.nav-toggle span {
+  height: 2px;
+}
+
+.liquidFillGaugeText {
+  font-family: Helvetica;
+  font-weight: bold; 
+}
+
+@media screen and (max-width: 768px) {
+
+.statement {
+  font-family: 'Muli';
+  font-size: 1.5em;
+}
+
+}
 
 font-family: 'Muli', sans-serif;
 font-family: 'Raleway', sans-serif;
