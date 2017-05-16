@@ -1,23 +1,30 @@
 const button = document.getElementById('button'),
-      city = document.getElementById('city'),
-      icon = document.getElementById('icon'),
-      main = document.getElementById('main'),
-      temp = document.getElementById('temp'),
+      weather = document.getElementById('weather');
       input = document.getElementById('input');
+
+button.addEventListener('click', function() {
+  let zip = input.value;
+  callWeatherData(zip);
+})
+
+function writeWeather(name, id, condition, kelv) {
+  weather.innerHTML = ""
+  writeCityName(name)
+  writeWeatherIcon(id)
+  writeWeatherMain(condition)
+  writeWeatherTemp(kelv)
+}
 
 function callWeatherData(zip) {
   let request = new XMLHttpRequest(),
-      url = `http://api.openweathermap.org/data/2.5/weather?zip=${zip},us&appid=55adfc59dc70cc96fa95a28ad5ef0526`;
+    url = `http://api.openweathermap.org/data/2.5/weather?zip=${zip},us&appid=55adfc59dc70cc96fa95a28ad5ef0526`;
 
   request.open('GET', url, true);
   request.onload = function() {
     if (request.status >= 200 && request.status < 400) {
       var data = JSON.parse(request.responseText);
       console.log(data)
-      writeCityName(data.name)
-      writeWeatherIcon(data.weather[0].icon)
-      writeWeatherMain(data.weather[0].main)
-      writeWeatherTemp(data.main.temp)
+      writeWeather(data.name, data.weather[0].icon, data.weather[0].main, data.main.temp)
     } else {
       console.log("Error")
     }
@@ -28,24 +35,19 @@ function callWeatherData(zip) {
   request.send();
 }
 
-button.addEventListener('click', function() {
-  let zip = input.value;
-  callWeatherData(zip);
-})
-
 function writeCityName(cityName) {
-   city.innerHTML = `Today's weather in ${cityName}`; 
+  weather.innerHTML += `<h1>Today's weather in ${cityName}</h1>`; 
 }
 
 function writeWeatherIcon(id) {
-  icon.setAttribute("src", `http://openweathermap.org/img/w/${id}.png` );
+  weather.innerHTML += `<img src="http://openweathermap.org/img/w/${id}.png"></img>`;
 }
 
 function writeWeatherMain(condition) {
-  main.innerHTML = condition;
+  weather.innerHTML += `<h2>${condition}</h2>`;
 }
 
 function writeWeatherTemp(kelv) {
   kelv = 1.8 * (kelv - 273) + 32;
-  temp.innerHTML = `${Math.round(kelv)} &deg;F`;
+  weather.innerHTML += `<h2>${Math.round(kelv)} &deg;F</h2>`;
 }
