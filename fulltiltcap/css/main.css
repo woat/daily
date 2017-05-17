@@ -113,10 +113,10 @@ body {
 
 @media screen and (max-width: 768px) {
 
-.statement {
-  font-family: 'Muli';
-  font-size: 1.5em;
-}
+  .statement {
+    font-family: 'Muli';
+    font-size: 1.5em;
+  }
 
 }
 
