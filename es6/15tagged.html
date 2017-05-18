@@ -1,0 +1,28 @@
+!DOCTYPE html>
+<html>
+  <div class='bio'> </div>
+  <script>
+    // <abbr title=${dict.key}></abbr>
+const dict = {
+    HTML: 'Hyper Text Markup Language',
+    CSS: 'Cascading Style Sheets',
+    JS: 'JavaScript'
+  },
+  first = 'Wes',
+  last = 'Bos',
+  sentence = title`Hello my name is ${first} ${last} and I know ${'HTML'}, ${'CSS'}, and ${'JS'}`,
+  bio = document.querySelector('.bio'),
+  p = document.createElement('p');
+
+function title(strings, ...values) {
+  let str = '';
+  strings.forEach((strings, i) => {
+    str += strings + `${dict.hasOwnProperty(${values[i]}) ? `<abbr title="${dict[values[i]]}">${values[i]}</abbr>` : values[i] || ""}`
+  })
+  return str
+}
+
+p.innerHTML = sentence
+bio.appendChild(p)
+  </script>
+</html>

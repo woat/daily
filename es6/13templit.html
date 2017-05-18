@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <div id='app'></div>
+  <script>
+    const song1 = {
+      name: 'Name1',
+      song: 'Song1',
+      feat: 'Fggeat'
+    }
+    
+const song2 = {
+  name: 'Name2',
+  song: 'Song2'
+}
+
+function writeSong(song) {
+  const template = `
+  <h1>${song.name}</h1>
+  <h1>${song.song}</h1>
+  <h1>${song.feat ? `<h1>${song.feat}</h1>` : ""}</h1>
+  ` 
+  document.getElementById('app').innerHTML += template
+}
+
+writeSong(song1)
+writeSong(song2)
+  </script>
+</html>
