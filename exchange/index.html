@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.css" />
+  <title>Hello</title>
+    
+  <section class="hero is-fullheight is-dark">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <h1 id="convert"></h1>
+        <div class="columns">
+          <div class="column is-4">
+            <input id="baseCu" type="text" class="input" placeholder="Enter your base currency.">
+          </div>
+          <div class="column is-4">
+            <input id="baseAm" type="text" class="input" placeholder="Enter your base amount.">
+          </div>
+          <div class="column is-4">
+            <input id="targetCu" type="text" class="input" placeholder="Enter your target currency.">
+          </div>
+        </div>
+        <button id="submitConvert" class="button">Convert</button>
+        <div class="columns">
+          <div class="column is-4 is-offset-4">
+            <input id="inputCurrency" type="text" class="input" placeholder="Enter your currency to get rates!">
+          </div>
+        </div>
+        <a id="submitRate" class="button is-medium">Get Rate</a>
+        <div class="columns">
+          <div class="column is-4 is-offset-4">
+            <div id="dvTable"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="main.js"></script>
+</html>
