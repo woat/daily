@@ -1,16 +1,30 @@
 const submit = document.getElementById('submitRate');
 const input = document.getElementById('inputCurrency');
 const dvTable = document.getElementById('dvTable');
-const rates = document.getElementById('rates');
 const convert = document.getElementById('convert');
 const baseCu = document.getElementById('baseCu');
 const baseAm = document.getElementById('baseAm');
 const targetCu = document.getElementById('targetCu');
 const submitConvert = document.getElementById('submitConvert');
+const targetDropdown = document.getElementById('targetDropdown');
+const baseDropdown = document.getElementById('baseDropdown');
 
-// TODO create dropdown 
-// Pull data from api to dynamically create dropdown
-// Do not hardcode it
+function createTargetDropdown(currencies, dropdown) {
+  dropdown.innerHTML = '';
+  currencies.map(currency => dropdown.innerHTML += `<option value="target-${currency}">${currency}</option>`)
+}
+
+function displayDropdown(dropdown) {
+  const exchange = fetch('http://api.fixer.io/latest');
+  return exchange
+    .then(response => response.json())
+    .then(response => response.rates)
+    .then(response => Object.keys(response))
+    .then(response => createTargetDropdown(response, dropdown))
+}
+
+displayDropdown(targetDropdown);
+displayDropdown(baseDropdown);
 
 function callApi(baseCurrency) {
   const exchange = fetch(`http://api.fixer.io/latest?base=${baseCurrency}`);
@@ -41,8 +55,9 @@ function displayConvert(baseCurrency, baseAmount, targetCurrency) {
     .then(price => convert.innerHTML = price);
 }
 
-function displayRates() {
-  const exchange = callApi('USD');
+function displayRates(currency) {
+  console.log(currency)
+  const exchange = callApi(currency);
   const exch = [];
 
   exchange
@@ -80,12 +95,15 @@ function displayRates() {
     });
 }
 
-submit.addEventListener('click', () => displayRates());
+submit.addEventListener('click', () => {
+  const baseCurren = input.value;
+  displayRates(baseCurren);
+});
 
 submitConvert.addEventListener('click', () => {
-  const base = baseCu.value;
+  const base = baseDropdown.value.split('-')[1];
   const amount = baseAm.value;
-  const target = targetCu.value;
+  const target = targetDropdown.value.split('-')[1];
 
   displayConvert(base, amount, target);
 });
