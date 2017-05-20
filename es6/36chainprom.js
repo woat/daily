@@ -27,9 +27,9 @@ function getPostById(id) {
 
 function hydrateAuthor(post) {
   return new Promise ((resolve, reject) => {
-    const authorDetails = authors.find(person => person.name == post.author)
-    if (authorDetails) {
-      post.author = authorDetails 
+    const hydrated = authors.find(person => person.name == post.author)
+    if (hydrated) {
+      post.author = hydrated 
       resolve(post)
     } else {
       reject(Error('Could not hydrate author'))

@@ -6,46 +6,43 @@
   <section class="hero is-fullheight is-dark">
     <div class="hero-body">
       <div class="container has-text-centered">
-        <h1 id="convert"></h1>
+        <h1 id="convert" class="title is-1"></h1>
         <div class="columns">
-          <div class="column is-4">
-            <input id="baseCu" type="text" class="input" placeholder="Enter your base currency.">
+          <div class="column is-2 is-offset-3">
             <span class="select">
               <select id="baseDropdown"></select>
             </span>
           </div>
-          <div class="column is-4">
-            <input id="baseAm" type="text" class="input" placeholder="Enter your base amount.">
+          <div class="column is-2">
+            <input id="baseAm" type="text" class="input" placeholder="Base Amount">
           </div>
-          <div class="column is-4">
-            <input id="targetCu" type="text" class="input" placeholder="Enter your target currency.">
-            <p class="control">
-              <span class="select">
-                <select id="targetDropdown">
-                  
-                </select>
-                <!-- <select> -->
-                <!--   <option>Select dropdown</option> -->
-                <!--   <option>With options</option> -->
-                <!-- </select> -->
-              </span>
-            </p>
+          <div class="column is-2">
+            <span class="select">
+              <select id="targetDropdown"></select>
+            </span>
           </div>
         </div>
         <button id="submitConvert" class="button">Convert</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero is-primary">
+    <div class="hero-body">
+      <div class="container has-text-centered">
         <div class="columns">
           <div class="column is-4 is-offset-4">
             <input id="inputCurrency" type="text" class="input" placeholder="Enter your currency to get rates!">
+        <a id="submitRate" class="button">Get Rate</a>
           </div>
         </div>
-        <a id="submitRate" class="button is-medium">Get Rate</a>
         <div class="columns">
           <div class="column is-4 is-offset-4">
             <div id="dvTable"></div>
           </div>
         </div>
       </div>
-    </div>
   </section>
 
   <script src="main.js"></script>

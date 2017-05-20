@@ -23,9 +23,6 @@ function displayDropdown(dropdown) {
     .then(response => createTargetDropdown(response, dropdown))
 }
 
-displayDropdown(targetDropdown);
-displayDropdown(baseDropdown);
-
 function callApi(baseCurrency) {
   const exchange = fetch(`http://api.fixer.io/latest?base=${baseCurrency}`);
   return exchange;
@@ -45,7 +42,10 @@ function getExchange(baseCurrency, baseAmount, targetCurrency) {
     .then((res) => {
       rate = res[1];
       const finalPrice = baseAmount * rate;
-      return finalPrice;
+      return finalPrice.toFixed(2)
+        // Commas
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     })
     .catch(err => console.log(Error(err)));
 }
@@ -56,7 +56,6 @@ function displayConvert(baseCurrency, baseAmount, targetCurrency) {
 }
 
 function displayRates(currency) {
-  console.log(currency)
   const exchange = callApi(currency);
   const exch = [];
 
@@ -94,6 +93,9 @@ function displayRates(currency) {
       dvTable.appendChild(table);
     });
 }
+
+displayDropdown(targetDropdown);
+displayDropdown(baseDropdown);
 
 submit.addEventListener('click', () => {
   const baseCurren = input.value;
