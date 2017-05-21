@@ -1,10 +1,8 @@
 const submit = document.getElementById('submitRate');
-const input = document.getElementById('inputCurrency');
+const rateDropdown = document.getElementById('rateDropdown');
 const dvTable = document.getElementById('dvTable');
 const convert = document.getElementById('convert');
-const baseCu = document.getElementById('baseCu');
 const baseAm = document.getElementById('baseAm');
-const targetCu = document.getElementById('targetCu');
 const submitConvert = document.getElementById('submitConvert');
 const targetDropdown = document.getElementById('targetDropdown');
 const baseDropdown = document.getElementById('baseDropdown');
@@ -96,17 +94,17 @@ function displayRates(currency) {
 
 displayDropdown(targetDropdown);
 displayDropdown(baseDropdown);
+displayDropdown(rateDropdown);
 
 submit.addEventListener('click', () => {
-  const baseCurren = input.value;
-  displayRates(baseCurren);
+  const rates = rateDropdown.value.split('-')[1];
+  displayRates(rates);
 });
 
 submitConvert.addEventListener('click', () => {
   const base = baseDropdown.value.split('-')[1];
   const amount = baseAm.value;
   const target = targetDropdown.value.split('-')[1];
-
-  displayConvert(base, amount, target);
+  base === target ? convert.innerHTML = '<img src="http://emojipedia-us.s3.amazonaws.com/cache/8d/8e/8d8e1093db47f4c9a756066dfe591e8e.png">' : displayConvert(base, amount, target);
 });
 
