@@ -3,7 +3,7 @@ const rateDropdown = document.getElementById('rateDropdown');
 const dvTable = document.getElementById('dvTable');
 const convert = document.getElementById('convert');
 const baseAm = document.getElementById('baseAm');
-const submitConvert = document.getElementById('submitConvert');
+const targetAm = document.getElementById('targetAm');
 const targetDropdown = document.getElementById('targetDropdown');
 const baseDropdown = document.getElementById('baseDropdown');
 
@@ -50,7 +50,17 @@ function getExchange(baseCurrency, baseAmount, targetCurrency) {
 
 function displayConvert(baseCurrency, baseAmount, targetCurrency) {
   getExchange(baseCurrency, baseAmount, targetCurrency)
-    .then(price => convert.innerHTML = price);
+    .then(price => {
+      convert.innerHTML = price;
+      targetAm.value = price;
+    });
+}
+
+function displayTargetConvert(baseCurrency, baseAmount, targetCurrency) {
+  getExchange(baseCurrency, baseAmount, targetCurrency)
+    .then(price => {
+      baseAm.value = price;
+    });
 }
 
 function displayRates(currency) {
@@ -101,10 +111,16 @@ submit.addEventListener('click', () => {
   displayRates(rates);
 });
 
-submitConvert.addEventListener('click', () => {
+baseAm.addEventListener('keyup', () => {
   const base = baseDropdown.value.split('-')[1];
   const amount = baseAm.value;
   const target = targetDropdown.value.split('-')[1];
   base === target ? convert.innerHTML = '<img src="http://emojipedia-us.s3.amazonaws.com/cache/8d/8e/8d8e1093db47f4c9a756066dfe591e8e.png">' : displayConvert(base, amount, target);
 });
 
+targetAm.addEventListener('keyup', () => {
+  const base = baseDropdown.value.split('-')[1];
+  const targetAmount = targetAm.value;
+  const target = targetDropdown.value.split('-')[1];
+  base === target ? convert.innerHTML = '<img src="http://emojipedia-us.s3.amazonaws.com/cache/8d/8e/8d8e1093db47f4c9a756066dfe591e8e.png">' : displayTargetConvert(target, targetAmount, base);
+});
