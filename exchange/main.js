@@ -7,6 +7,11 @@ const targetAm = document.getElementById('targetAm');
 const targetDropdown = document.getElementById('targetDropdown');
 const baseDropdown = document.getElementById('baseDropdown');
 
+function callApi(baseCurrency) {
+  const exchange = fetch(`http://api.fixer.io/latest?base=${baseCurrency}`);
+  return exchange;
+}
+
 function createTargetDropdown(currencies, dropdown) {
   dropdown.innerHTML = '';
   currencies.map(currency => dropdown.innerHTML += `<option value="target-${currency}">${currency}</option>`)
@@ -19,11 +24,6 @@ function displayDropdown(dropdown) {
     .then(response => response.rates)
     .then(response => Object.keys(response))
     .then(response => createTargetDropdown(response, dropdown))
-}
-
-function callApi(baseCurrency) {
-  const exchange = fetch(`http://api.fixer.io/latest?base=${baseCurrency}`);
-  return exchange;
 }
 
 function getExchange(baseCurrency, baseAmount, targetCurrency) {
@@ -49,6 +49,7 @@ function getExchange(baseCurrency, baseAmount, targetCurrency) {
 }
 
 function displayConvert(baseCurrency, baseAmount, targetCurrency) {
+  // Changes both main display and target input
   getExchange(baseCurrency, baseAmount, targetCurrency)
     .then(price => {
       convert.innerHTML = price;
@@ -57,6 +58,7 @@ function displayConvert(baseCurrency, baseAmount, targetCurrency) {
 }
 
 function displayTargetConvert(baseCurrency, baseAmount, targetCurrency) {
+  // Changes only the base currency input
   getExchange(baseCurrency, baseAmount, targetCurrency)
     .then(price => {
       baseAm.value = price;
