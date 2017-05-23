@@ -1,6 +1,7 @@
 const submit = document.getElementById('submitRate');
 const rateDropdown = document.getElementById('rateDropdown');
 const dvTable = document.getElementById('dvTable');
+const revert = document.getElementById('revert');
 const convert = document.getElementById('convert');
 const baseAm = document.getElementById('baseAm');
 const targetAm = document.getElementById('targetAm');
@@ -14,7 +15,7 @@ function callApi(baseCurrency) {
 
 function createTargetDropdown(currencies, dropdown) {
   dropdown.innerHTML = '';
-  currencies.map(currency => dropdown.innerHTML += `<option value="target-${currency}">${currency}</option>`)
+  currencies.map(currency => dropdown.innerHTML += `<option value="target-${currency}">${currency}</option>`);
 }
 
 function displayDropdown(dropdown) {
@@ -23,7 +24,7 @@ function displayDropdown(dropdown) {
     .then(response => response.json())
     .then(response => response.rates)
     .then(response => Object.keys(response))
-    .then(response => createTargetDropdown(response, dropdown))
+    .then(response => createTargetDropdown(response, dropdown));
 }
 
 function getExchange(baseCurrency, baseAmount, targetCurrency) {
@@ -40,28 +41,26 @@ function getExchange(baseCurrency, baseAmount, targetCurrency) {
     .then((res) => {
       rate = res[1];
       const finalPrice = baseAmount * rate;
-      return finalPrice.toFixed(2)
-        // Commas
-        .toString()
-        .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      return finalPrice.toFixed(2);
     })
     .catch(err => console.log(Error(err)));
 }
 
 function displayConvert(baseCurrency, baseAmount, targetCurrency) {
-  // Changes both main display and target input
   getExchange(baseCurrency, baseAmount, targetCurrency)
-    .then(price => {
-      convert.innerHTML = price;
+    .then((price) => {
       targetAm.value = price;
+      convert.innerHTML = `${price} ${targetDropdown.value.split('-')[1]}`;
+      revert.innerHTML = `${baseAm.value} ${baseDropdown.value.split('-')[1]} equals`;
     });
 }
 
 function displayTargetConvert(baseCurrency, baseAmount, targetCurrency) {
-  // Changes only the base currency input
   getExchange(baseCurrency, baseAmount, targetCurrency)
-    .then(price => {
+    .then((price) => {
       baseAm.value = price;
+      revert.innerHTML = `${price} ${baseDropdown.value.split('-')[1]} equals`;
+      convert.innerHTML = `${targetAm.value} ${targetDropdown.value.split('-')[1]}`;
     });
 }
 

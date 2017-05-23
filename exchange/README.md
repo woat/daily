@@ -6,4 +6,4 @@ powered by [fixer.io](http://api.fixer.io/)
 
 built with vanilla.js
 
-i actually decided to take things a step further and just remake google's converter.
+loosely based on google's convert widget (query: [1 usd to yen](https://www.google.com/search?q=1+usd+to+aud))
