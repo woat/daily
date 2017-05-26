@@ -18,6 +18,11 @@
 // cards are pushed in an array [2H, 2C]
 // to access first card's suit: card[0][1]
 
+// dealing shared cards
+// dealCards(3) = flop
+// dealCards(1) = turn, river
+// mutates a global array
+
 function generateDeck() {
   const cards = ['2', '3', '4', '5', '6', '7', '8', '9', '0', 'J', 'Q', 'K', 'A'];
   const suits = ['S', 'C', 'H', 'D'];
@@ -55,7 +60,7 @@ function removePlayerCards(deck, amount) {
   return deck;
 }
 
-function deal(deck, playerAmount) {
+function dealHands(deck, playerAmount) {
   // remove 2 cards from deck and push into hand
   const playerHand = [];
   removePlayerCards(deck, playerAmount);
@@ -64,11 +69,34 @@ function deal(deck, playerAmount) {
   return playerHand;
 }
 
+function checkStrength(hand, deck) {
+  // sample hand ["2S", "AC"]
+  const cardOne = hand[0];
+  const cardTwo = hand[1];
+
+  if (cardOne[0] === cardTwo[0]) {
+    console.log('Pair')
+  } else {
+    console.log('High Card')
+  }
+}
+
+function dealCards(number) {
+  for (let i = 0; i < number; i++) {
+    tableCards.push(ourDeck[i]);
+    shuffle(ourDeck);
+  }
+}
+
 let players = 3;
 let ourDeck = shuffle(generateDeck());
-console.log(ourDeck, ourDeck.length)
-console.log('deck should be full length: 52')
-let ourHand = deal(ourDeck, players);
+let tableCards = [];
+let ourHand = dealHands(ourDeck, players);
 console.log('ourHand: ' + [...ourHand]);
-console.log(ourDeck, ourDeck.length);
-console.log('deck should be length: ' + `${50 - (players * 2)}`);
+checkStrength(ourHand)
+dealCards(3);
+console.log(tableCards);
+dealCards(1);
+console.log(tableCards);
+dealCards(1);
+console.log(tableCards);
