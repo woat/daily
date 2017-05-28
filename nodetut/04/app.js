@@ -4,7 +4,7 @@ const url = require('url');
 const fs = require('fs');
 
 function renderHTML(path, response) {
-  fs.readFile('path', null, (error, data) => {
+  fs.readFile(path, null, (error, data) => {
     if (error) {
       response.writeHead(404);
       response.write('File not found!');
@@ -24,14 +24,14 @@ module.exports = {
     switch (path) {
       case '/':
         renderHTML('./index.html', response);
-        break
+        break;
       case '/login':
         renderHTML('./login.html', response);
-        break
+        break;
       default:
         response.writeHead(404);
         response.write('Error 404 Page Not Found');
         response.end();
     }
-  }
+  },
 };
