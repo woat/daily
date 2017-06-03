@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <h3>Students</h3>
+  <ul>
+    <% for(let i = 0; i < studentlist.length; i++) { %>
+      <li><%= studentlist[i].student %> lives at <%= studentlist[i].street %></li>
+      <% } %>
+  </ul>
+</body>
+</html>
