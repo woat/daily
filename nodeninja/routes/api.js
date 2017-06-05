@@ -10,7 +10,8 @@ router.get('/ninjas/', (req, res, next) => {
       { type: 'Point', coordinates: [parseFloat(req.query.lng), parseFloat(req.query.lat)] },
       { maxDistance: 100000, spherical: true },
     )
-    .then(ninjas => res.send(ninjas));
+    .then(ninjas => res.send(ninjas))
+    .catch(err => console.log(err));
 });
 
 // add a new ninja to the db
