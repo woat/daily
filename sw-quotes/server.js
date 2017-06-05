@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
 
 const app = express();
+// don't steal my keys please :(
 const url = 'mongodb://admin:admin@ds161121.mlab.com:61121/my-star-wars-quotes';
 let db;
 
