@@ -16,7 +16,14 @@
           <form>
             <input type="text" v-model="lng" placeholder="longitude">
             <input type="text" v-model="lat" placeholder="latitude">
-            <input type="Submit" @click="getNinjas()"></button>
+            <input type="Submit" @click="getNinjas()" value="Get Ninjas">
+          </form>
+          <form>
+            <input type="text" v-model="newNinja.name" placeholder="name">
+            <input type="text" v-model="newNinja.rank" placeholder="rank">
+            <input type="text" v-model="newNinja.lng" placeholder="lng">
+            <input type="text" v-model="newNinja.lat" placeholder="lat">
+            <input type="Submit" @click="postNinjas()" value="Post Ninjas">
           </form>
           <div v-for="ninja in ninjasArray">
             <ul>
