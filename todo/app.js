@@ -8,6 +8,7 @@ const app = express();
 mongoose.connect('mongodb://localhost/todoapp');
 mongoose.Promise = global.Promise;
 
+app.use(express.static('public'));
 app.use(bodyParser.json());
 
 app.use('/api', api);
