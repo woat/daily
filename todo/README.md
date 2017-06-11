@@ -2,7 +2,9 @@
 
 <img src="http://i.imgur.com/PpgD0Kd.gif" />
 
-##### to preview
+the first crud app everyone and their grandma makes.
+
+## to preview
 ```
 git clone
 node app.js
