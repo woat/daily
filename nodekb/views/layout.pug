@@ -1,10 +1,24 @@
 doctype html
 html
   head
-    title Knowledgebase
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    title knowledgebase
+    link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.2/css/bulma.min.css')
   body
-    block content
-    br
+    nav.nav
+      .nav-left
+        a.nav-item articles
+      span.nav-toggle#hamburger
+        span
+        span
+        span
+      .nav-right.nav-menu#menu
+        a.nav-item(href='/') home
+        a.nav-item(href='/articles/add') add articles
+    .container
+      block content
+        br
     hr
     footer
       p Copyright &copy; 2017
+    script(src='/main.js')
