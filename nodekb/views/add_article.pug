@@ -3,14 +3,14 @@ extends layout
 block content
     h1.title.is-1 #{title}
     form(method='POST', action='/articles/add')
-      #form-group
+      .field
         label Title:
-        input.form-control(name='title', type='text')
-      #form-group
+        input.input(name='title', type='text')
+      .field
         label Author:
-        input.form-control(name='author', type='text')
-      #form-group
+        input.input(name='author', type='text')
+      .field
         label Body:
-        textarea.form-control(name='body', type='text')
+        textarea.input(name='body', type='text')
       input.btn.btn-primary(type='submit', value='Submit')
         

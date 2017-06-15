@@ -5,6 +5,10 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const articles = require('./routes/articles');
 const Article = require('./models/article');
+const expressValidator = require('express-validator');
+const flash = require('connect-flash');
+const session = require('express-session');
+const expressMessages = require('express-messages');
 
 mongoose.connect('mongodb://localhost/nodekb');
 const db = mongoose.connection;
@@ -18,9 +22,36 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/articles', articles);
+app.use(session({
+  secret: 'keyboard cat',
+  resave: true,
+  saveUnintialized: true,
+}));
+app.use(flash());
+app.use((req, res, next) => {
+  res.locals.messages = expressMessages(req, res);
+  next();
+});
+app.use(expressValidator({
+  errorFormatter: (param, msg, value) => {
+    const namespace = param.split('.');
+    const root = namespace.shift();
+    let formParam = root;
+
+    while (namespace.length) {
+      formParam += `[ ${namespace.shift()} ]`;
+    }
+
+    return {
+      param: formParam,
+      msg,
+      value,
+    };
+  },
+}));
 
 // Load View Engine
+app.use('/articles', articles);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 

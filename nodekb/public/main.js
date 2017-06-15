@@ -7,7 +7,24 @@ hamburger.addEventListener('click', () => {
 });
 
 deleteButton.addEventListener('click', () => {
-  console.log(deleteButton.dataset.id)
-})
+  swal({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'No, cancel!',
+    confirmButtonClass: 'button is-success',
+    cancelButtonClass: 'button is-danger',
+    buttonsStyling: false,
+  })
+    .then(() => {
+      swal('Deleted!', 'Your file has been deleted.', 'success')
+      .then(() => {
+        fetch(`${deleteButton.dataset.id}`, { method: 'DELETE' });
+        window.location.href = '/';
+      });
+    });
+});
 
-console.log('js successfully loaded')
+console.log('js successfully loaded');

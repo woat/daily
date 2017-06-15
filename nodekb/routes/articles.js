@@ -36,6 +36,7 @@ router.put('/edit/:id', (req, res) => {
     Object.assign(article, req.body);
     article.save((error) => {
       if (error) console.log(error);
+      req.flash('info', 'Article Saved');
       res.redirect('/');
     });
   });
@@ -50,16 +51,33 @@ router.get('/:id', (req, res) => {
   });
 });
 
+// Delete Single Article
+router.delete('/:id', (req, res) => {
+  Article.findByIdAndRemove(req.params.id, (err) => {
+    if (err) console.log(err);
+    res.send('Deleted sucess');
+  });
+});
+
 // Add Submit POST Route
 router.post('/add', (req, res) => {
-  const article = new Article();
-  article.title = req.body.title;
-  article.author = req.body.author;
-  article.body = req.body.body;
-  article.save((err) => {
-    if (err) console.log(err);
-    res.redirect('/');
-  });
+  req.checkBody('title', 'You must enter a title.').notEmpty();
+  req.checkBody('author', 'You must enter a author.').notEmpty();
+  req.checkBody('body', 'You must enter a body.').notEmpty();
+  const errors = req.validationErrors();
+  if (errors) {
+    res.render('add_article', { errors });
+  } else {
+    const article = new Article();
+    article.title = req.body.title;
+    article.author = req.body.author;
+    article.body = req.body.body;
+    article.save((err) => {
+      if (err) console.log(err);
+      req.flash('success', 'Article Added');
+      res.redirect('/');
+    });
+  }
 });
 
 module.exports = router;
