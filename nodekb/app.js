@@ -4,6 +4,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const articles = require('./routes/articles');
+const users = require('./routes/users');
 const Article = require('./models/article');
 const expressValidator = require('express-validator');
 const flash = require('connect-flash');
@@ -50,8 +51,11 @@ app.use(expressValidator({
   },
 }));
 
-// Load View Engine
+// Load Routes
 app.use('/articles', articles);
+app.use('/users', users);
+
+// Load View Engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
