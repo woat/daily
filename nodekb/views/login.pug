@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  .columns
+      .column.is-6.is-offset-3
+        .container
+        h1.title.is-1 login
+        form(method='POST' action='/users/login')
+          .field
+            label username
+            input.input(name='username' placeholder='username' type='text')
+          .field
+            label password
+            input.input(name='password' placeholder='password' type='text')
+          input.btn.btn-primary(type='submit', value='login')

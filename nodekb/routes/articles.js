@@ -69,9 +69,7 @@ router.post('/add', (req, res) => {
     res.render('add_article', { errors });
   } else {
     const article = new Article();
-    article.title = req.body.title;
-    article.author = req.body.author;
-    article.body = req.body.body;
+    Object.assign(article, req.body);
     article.save((err) => {
       if (err) console.log(err);
       req.flash('success', 'Article Added');

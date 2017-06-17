@@ -10,8 +10,9 @@ const expressValidator = require('express-validator');
 const flash = require('connect-flash');
 const session = require('express-session');
 const expressMessages = require('express-messages');
+const config = require('./config/database');
 
-mongoose.connect('mongodb://localhost/nodekb');
+mongoose.connect(config.database);
 const db = mongoose.connection;
 
 db.once('open', () => console.log('connected to mongodb'));
@@ -20,19 +21,6 @@ db.on('error', err => console.log(err));
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(methodOverride('_method'));
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({
-  secret: 'keyboard cat',
-  resave: true,
-  saveUnintialized: true,
-}));
-app.use(flash());
-app.use((req, res, next) => {
-  res.locals.messages = expressMessages(req, res);
-  next();
-});
 app.use(expressValidator({
   errorFormatter: (param, msg, value) => {
     const namespace = param.split('.');
@@ -50,6 +38,19 @@ app.use(expressValidator({
     };
   },
 }));
+app.use(bodyParser.json());
+app.use(methodOverride('_method'));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: 'keyboard cat',
+  resave: true,
+  saveUnintialized: true,
+}));
+app.use(flash());
+app.use((req, res, next) => {
+  res.locals.messages = expressMessages(req, res);
+  next();
+});
 
 // Load Routes
 app.use('/articles', articles);
