@@ -11,8 +11,9 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const expressMessages = require('express-messages');
 const config = require('./config/database');
+const passport = require('passport');
 
-mongoose.connect(config.database);
+mongoose.connect('mongodb://localhost/nodekb');
 const db = mongoose.connection;
 
 db.once('open', () => console.log('connected to mongodb'));
@@ -20,7 +21,8 @@ db.on('error', err => console.log(err));
 
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(expressValidator({
   errorFormatter: (param, msg, value) => {
     const namespace = param.split('.');
@@ -38,7 +40,6 @@ app.use(expressValidator({
     };
   },
 }));
-app.use(bodyParser.json());
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
@@ -52,6 +53,10 @@ app.use((req, res, next) => {
   next();
 });
 
+require('./config/passport')(passport);
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Load Routes
 app.use('/articles', articles);
 app.use('/users', users);
@@ -59,6 +64,11 @@ app.use('/users', users);
 // Load View Engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+app.get('*', (req, res, next) => {
+  res.locals.user = req.user || null;
+  next();
+})
 
 app.get('/', (req, res) => {
   Article.find({}, (err, articles) => {

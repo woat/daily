@@ -16,8 +16,13 @@ html
         span
       .nav-right.nav-menu#menu
         a.nav-item(href='/') home
-        a.nav-item(href='/articles/add') add articles
-        a.nav-item(href='/users/register') register
+        if user
+          a.nav-item(href='')= user._id
+          a.nav-item(href='/articles/add') add articles
+          a.nav-item(href='/users/logout') logout
+        else
+          a.nav-item(href='/users/register') register
+          a.nav-item(href='/users/login') login
     .container
       != messages('message', locals)
       if errors

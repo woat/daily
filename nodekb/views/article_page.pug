@@ -2,8 +2,11 @@ extends layout
 
 block content
   h1.title.is-1= article.title
-  h5.subtitle.is-5 Written by #{article.author}
+  h5.subtitle.is-5 Written by #{author}
   p= article.body
-  hr
-  a.button(href='/articles/edit/'+article.id) Edit
-  button.button(data-id=article.id)#delete Delete
+  h1= user._id
+  h1= article.author
+  if user
+    if user.id ==article.author
+      a.button(href='/articles/edit/'+article.id) Edit
+      button.button(data-id=article.id)#delete Delete

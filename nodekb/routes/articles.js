@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Article = require('../models/article');
+const User = require('../models/user');
 
 // Home Route
 router.get('/', (req, res) => {
@@ -14,14 +15,14 @@ router.get('/', (req, res) => {
 });
 
 // Add Route
-router.get('/add', (req, res) => {
+router.get('/add', ensureAuthenticated, (req, res) => {
   res.render('add_article', {
     title: 'Article',
   });
 });
 
 // Get Edit Article
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id', ensureAuthenticated, (req, res) => {
   Article.findById(req.params.id, (err, article) => {
     res.render('edit_article', {
       title: 'Edit Article',
@@ -45,8 +46,11 @@ router.put('/edit/:id', (req, res) => {
 // Get Single Article
 router.get('/:id', (req, res) => {
   Article.findById(req.params.id, (err, article) => {
-    res.render('article_page', {
-      article,
+    User.findById(article.author, (err, user) => {
+      res.render('article_page', {
+        article,
+        author: user.name,
+      });
     });
   });
 });
@@ -62,7 +66,7 @@ router.delete('/:id', (req, res) => {
 // Add Submit POST Route
 router.post('/add', (req, res) => {
   req.checkBody('title', 'You must enter a title.').notEmpty();
-  req.checkBody('author', 'You must enter a author.').notEmpty();
+  // req.checkBody('author', 'You must enter a author.').notEmpty();
   req.checkBody('body', 'You must enter a body.').notEmpty();
   const errors = req.validationErrors();
   if (errors) {
@@ -70,6 +74,7 @@ router.post('/add', (req, res) => {
   } else {
     const article = new Article();
     Object.assign(article, req.body);
+    article.author = req.user._id;
     article.save((err) => {
       if (err) console.log(err);
       req.flash('success', 'Article Added');
@@ -77,5 +82,11 @@ router.post('/add', (req, res) => {
     });
   }
 });
+
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) return next();
+  req.flash('danger', 'Please log in');
+  res.redirect('/users/login');
+}
 
 module.exports = router;
