@@ -68,7 +68,7 @@ app.set('view engine', 'pug');
 app.get('*', (req, res, next) => {
   res.locals.user = req.user || null;
   next();
-})
+});
 
 app.get('/', (req, res) => {
   Article.find({}, (err, articles) => {

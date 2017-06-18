@@ -3,6 +3,7 @@ extends layout
 block content
     h1.title.is-1 #{title}
     form(method='POST', action='/articles/add')
+      h1= user.name
       .field
         label Title:
         input.input(name='title', type='text')
