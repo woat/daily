@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+  section.hero.is-fullheight
+      .hero-body
+        .container
+          .columns
+            .column.is-8.is-offset-2
+              .box
+                .field
+                  label.label.title.is-1 Register
+                form(method='POST' action='/account/register')
+                  .field
+                    label.label Username
+                    input.input(name='username' type='text' placeholder='Enter a username')
+                  .field
+                    label.label Email
+                    input.input(name='email' type='text' placeholder='Enter your email')
+                  .columns
+                    .column.is-6
+                      .field
+                        label.label Password
+                        input.input(name='password' type='text' placeholder='Enter a strong password')
+                    .column.is-6
+                      .field
+                        label.label Confirm Password
+                        input.input(name='confirmPassword' type='text' placeholder='Confirm your strong password')
+                  input.button(type='submit' value='Complete Registration')

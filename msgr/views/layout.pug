@@ -1,0 +1,20 @@
+doctype html
+link(href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.2/css/bulma.min.css' rel='stylesheet')
+
+nav.nav.has-shadow
+  .nav-left
+    .nav-item
+      a.title.is-3(href='/')
+        em msgr
+  .nav-right
+    .nav-item
+      a.title.is-5 Profile
+    .nav-item
+      a.title.is-5 Logout
+    .nav-item 
+      a.title.is-5(href='/account/register') Register
+    .nav-item
+      a.title.is-5(href='/account/login') Login
+
+block content
+

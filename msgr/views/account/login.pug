@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  section.hero.is-fullheight
+    .hero-body
+      .container
+        .columns
+          .column.is-6.is-offset-3
+            .box
+              label.label.title.is-1 Login
+              form(method='POST' action='/accounts/login')
+                .field
+                  label.label Username
+                  input.input(name='username' type='text' placeholder='username')
+                .field
+                  label.label Password
+                  input.input(name='password' type='text' placeholder='password')
+                input.button.is-large(type='submit' value='Login')
