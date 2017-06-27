@@ -16,7 +16,6 @@ router.post('/register', (req, res) => {
   const newUser = new RegisterUser();
   Object.assign(newUser, req.body);
   newUser.save();
-  req.flash('success', 'Account successfully created.')
   res.send('success');
 });
 

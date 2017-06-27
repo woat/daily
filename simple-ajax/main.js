@@ -1,8 +1,11 @@
 const ourList = document.getElementById('ourList');
 const button = document.getElementById('button');
+const url = 'https://jsonplaceholder.typicode.com/users';
 
-fetch('https://jsonplaceholder.typicode.com/users')
-  .then(data => data.json())
-  .then(data => data.map(item => {
-    console.log(item.username)
-  }))
+button.addEventListener('click', () => {
+  fetch(url)
+    .then(data => data.json())
+    .then(data => data.map(object => {
+      ourList.innerHTML += `<li>${object.name}</li>`
+    }))
+})
