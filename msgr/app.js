@@ -2,6 +2,9 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const expressValidator = require('express-validator');
+const flash = require('connect-flash');
+const session = require('express-session');
 
 // require routes
 const account = require('./routes/account');
@@ -19,6 +22,18 @@ app.use('/account', account);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+app.use(session({
+  secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: true,
+}));
+
+app.use(flash());
+app.use((req, res, next) => {
+  res.locals.messsages = require('express-messages')(req, res);
+  next();
+});
 
 app.get('/', (req, res) => {
   res.render('home');

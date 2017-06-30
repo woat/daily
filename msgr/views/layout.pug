@@ -16,7 +16,12 @@ nav.nav.has-shadow
     .nav-item
       a.title.is-5(href='/account/login') Login
 
-block content
+.container
+  != messages('messages', locals)
+  if errors
+    each error, i in errors
+      div(class="notifictation is-danger") #{error.msg}
+  block content
 
 footer.footer
   .container

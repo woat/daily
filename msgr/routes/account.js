@@ -15,8 +15,15 @@ router.get('/register', (req, res) => {
 router.post('/register', (req, res) => {
   const newUser = new RegisterUser();
   Object.assign(newUser, req.body);
-  newUser.save();
-  res.send('success');
+  newUser.save((err) => {
+    if (err) {
+      console.log(err);
+      return;
+    } else {
+      req.flash('success', 'Registration Successful!');
+      res.redirect('/');
+    }
+  });
 });
 
 module.exports = router;
