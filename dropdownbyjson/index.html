@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.css" />
+<link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<title>dropdown by json</title>
+<h1>test</h1>
+
+<div id="menu" class="container">
+  <div class="columns">
+    <div class="column is-3">
+      <aside class="menu">
+        <p class="menu-label">menu-label</p>
+        <ul class="menu-list">
+          <li><a>menu-li</a></li>
+          <li><a>menu-li</a></li>
+        </ul>
+        <p class="menu-label">menu-label</p>
+        <ul class="menu-list">
+          <li><a>menu-li</a></li>
+          <li><a>nested-li</a>
+            <ul class="hidden">
+              <li><a>menu-li</a></li>
+              <li><a>menu-li</a></li>
+              <li><a>menu-li</a></li>
+              <li><a>nested-li</a>
+                <ul class="hidden">
+                  <li><a>menu-li</a></li>
+                  <li><a>menu-li</a></li>
+                  <li><a>menu-li</a></li>
+                </ul>
+              </ul>
+            </li>
+          <li><a>menu-li</a></li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<script src="./main.js"></script>

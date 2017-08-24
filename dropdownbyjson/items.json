@@ -1,0 +1,20 @@
+[
+  {
+    "foods": [
+      "cheese",
+      "tomato",
+      "bread"
+    ]
+  },
+  {
+    "drinks": [
+      "water",
+      { 
+        "sodas": [
+          "coca",
+          "pepsi"
+        ]
+      }
+    ]
+  }
+]
