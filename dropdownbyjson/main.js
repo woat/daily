@@ -1,8 +1,27 @@
-async function getDropdownItems() {
+async function getMenu() {
   const items = await fetch('items.json');
   const fin = await items.json();
   return fin;
 }
+
+function getItems(menu) {
+  const keys = Object.keys(menu);
+  const items = [];
+  keys.forEach((key) => {
+    menu[key].forEach(item => items.push(item));
+  });
+  return items;
+}
+
+async function test() {
+  let menu = await getMenu();
+  menu.forEach(e => console.log(e))
+  menu = menu[0];
+  const keys = getItems(menu);
+  console.log(keys);
+}
+
+test();
 
 const nodeHelpers = {
   getChildNodes(el) {

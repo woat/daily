@@ -1,20 +1,10 @@
 [
   {
-    "foods": [
-      "cheese",
-      "tomato",
-      "bread"
-    ]
-  },
-  {
-    "drinks": [
-      "water",
-      { 
-        "sodas": [
-          "coca",
-          "pepsi"
-        ]
-      }
-    ]
+    "label": "menu-label",
+    "items": {
+      "menu-li": "#",
+      "menu-li2": "#",
+      "menu-li3": "#"
+    }
   }
 ]
