@@ -1,0 +1,15 @@
+span {
+  display: inline-block;
+}
+
+.card-divider {
+  margin: 0;
+}
+
+.card-content {
+  padding: 1rem;
+}
+
+.fa-lg {
+  line-height: 1.2em;
+}
