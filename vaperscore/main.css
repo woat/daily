@@ -10,6 +10,11 @@ span {
   padding: 1rem;
 }
 
+.logo {
+  font-family: 'Lily Script One', cursive;
+  font-size: 1.2em;
+}
+
 .fa-lg {
   line-height: 1.2em;
 }
