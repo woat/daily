@@ -64,3 +64,55 @@ var app7 = new Vue({
     ]
   }
 })
+
+var app8 = new Vue({
+  el: '#app-8',
+  data: {
+    classTest: 'yum'
+  }
+})
+
+var watchExampleVM = new Vue({
+  el: '#watch-example',
+  data: {
+    question: '',
+    answer: 'I cannot gibe answer until you ask a question m8.'
+  },
+  watch: {
+    question: function (newQuestion) {
+      // this refers to the vue object
+      this.answer = 'Waiting for u 2 finish typing';
+      this.getAnswer();
+    }
+  },
+  methods: {
+    getAnswer: _.debounce(
+      function () {
+        if (this.question.indexOf('?') === -1) {
+          this.answer = 'Questions have a fukin question mark';
+          return;
+        }
+        this.answer = 'thonking.....';
+        var vm = this;
+        axios.get('https://yesno.wtf/api')
+          .then(function (res) {
+            vm.answer = _.capitalize(res.data.answer)
+          })
+          .catch(function (err) {
+            vm.answer = 'cant reach da api' + err
+          })
+      },
+      500
+    )
+  }
+})
+
+var example1 = new Vue({
+  el: "#example-1",
+  data: {
+    items: [
+      { message: 'Foo' },
+      { message: 'Bar' }
+    ]
+  }
+})
