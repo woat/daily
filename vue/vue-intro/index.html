@@ -1,5 +1,6 @@
 <!doctype html>
 <title>vue tut</title>
+<link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
 <script src="https://unpkg.com/vue"></script>
 
 <div id="app">{{ message }}</div>
@@ -62,6 +63,23 @@
     {{ item.message }}
   </li>
 </ul>
+
+<div id="example-3">
+  <button @click="show = !show">
+    Toggle render
+  </button>
+  <h1>yung bull
+  <transition
+    name="custom-classes-transition"
+    enter-active-class="animated fadeInDown"
+    leave-active-class="animated fadeOutDown"
+  >
+    <p v-if="sho">hello</p>
+  </transition>
+  </h1>
+</div>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>

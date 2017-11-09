@@ -116,3 +116,21 @@ var example1 = new Vue({
     ]
   }
 })
+
+var example3 = new Vue({
+  el: '#example-3',
+  data: {
+    sho: true
+  },
+  methods: {
+    toggleShow: function () {
+      var vm = this;
+      setInterval(function () {
+        vm.sho = !vm.sho;
+      }, 2000);
+    }
+  },
+  created: function () {
+    this.toggleShow()
+  }
+})
