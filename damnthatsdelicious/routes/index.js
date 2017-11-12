@@ -1,14 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const storeController = require('../controllers/storeController')
 
 // Do work here
-router.get('/', (req, res) => {
-  res.render('hello')
-});
-
-router.get('/reverse/:owo', (req, res) => {
-  const name = req.params.owo;
-  res.send(name.split('').reverse().join(''));
-})
+router.get('/', storeController.homePage);
 
 module.exports = router;
