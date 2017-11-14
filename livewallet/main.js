@@ -46,14 +46,12 @@ function generateBox(btc, usd, address) {
 }
 
 function displayWallet(input) {
-// displays info onto div
-// calls pullwallet to obtain btc + usd
   const wallet = pullWallet(input);
   return wallet
     .then((data) => {
       // btc[0], usd[1]
       const btc = `${data[0].toString().substring(1, data[0].length - 8)}.${data[0].toString().substring(1)}`;
-      const usd = `${parseInt(btc * data[1]).toLocaleString()}`
+      const usd = `${parseInt(btc * data[1]).toLocaleString()}`;
       generateBox(btc, usd, input);
     });
 }
