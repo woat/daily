@@ -1,1 +1,1 @@
-# daily programming
+# ~/daily
