@@ -22,7 +22,40 @@ async function test() {
 }
 
 test();
-
+const nodeHelpers = {
+	getChildNodes(el) {
+		const childNodes = el.childNodes;
+		return Array.from(childNodes);
+	},
+	getSiblings(el) {
+		const siblings = el.parentNode.childNodes;
+		return Array.from(siblings);
+	},
+	removeTextNodes(el) {
+		return el.filter(node => node.nodeType !== 3);
+	},
+	checkUlNodes(el) {
+		return el.some(node => node.nodeName === 'UL');
+	},
+	checkParentHidden(el) {
+		return el.parentNode.className === 'hidden';
+	},
+	filterUlNodes(el) {
+		return el.filter(node => node.nodeName === 'UL');
+	},
+	hideUlNodes(el) {
+		el.forEach(node => node.classList.toggle('hidden'));
+	},
+	activeNodes() {
+		return document.getElementsByClassName('is-active');
+	},
+	addActiveNode(nodes) {
+		nodes[0].classList.toggle('is-active');
+	},
+	removeActiveNodes(nodes) {
+		nodes[0].classList.remove('is-active');
+	},
+};
 const nodeHelpers = {
   getChildNodes(el) {
     const childNodes = el.childNodes;
