@@ -82,3 +82,21 @@ function recursiveReverse(arr) {
 
 console.log('recursiveReverse');
 recursiveReverse([0, 1, 2, 3, 4, 5]);
+
+function mergeSort(arr0, arr1) {
+  let sortArr = [];
+  arr0.forEach(elem0 => {
+    arr1.forEach(elem1 => {
+      if (elem0 < elem1) {
+        sortArr.push(elem0);
+      } else {
+        sortArr.push(elem1);
+      }
+    })
+  })
+  console.log(sortArr);
+  return sortArr;
+}
+
+console.log('mergeSort');
+mergeSort([1, 3, 5], [2, 4, 6])
