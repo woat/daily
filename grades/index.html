@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Bulma.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css" />
+  <title>Grades JS Lab</title>
+</head>
+<body>
+  <section class="hero is-fullheight is-info is-warning">
+    <div class="hero-body">
+      <div class="container">
+        <!-- This is where the grades will go -->
+        <div class="level" id="grades">
+          
+        </div>
+        <div class="card">
+          <div class="card-content has-text-centered">
+            <div class="content">
+              <!-- Two spans, one for the average, another for the letter -->
+              <p class="title">Your grade average is&nbsp;<span id="avg"></span> and
+              your letter score is a&nbsp;<span id="letter"></span></p>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+document.addEventListener("DOMContentLoaded", function(event) {
+  const DOMgrades = document.getElementById('grades');
+  const DOMavg = document.getElementById('avg');
+  const DOMletter = document.getElementById('letter');
+
+  function getPrompt(message) {
+    const grade = prompt(message);
+    if (grade !== "" || !!parseInt(grade)) return grade;
+    return getPrompt(`Please enter valid INTEGER for grade ${i + 1}`)
+  }
+
+  function callGrades() {
+    const size = 4;
+    const grades = [];
+
+    for (i = 0; i < size; i++) {
+      const grade = getPrompt(`Please enter grade ${i + 1}`)
+      grades.push(grade);
+    }
+
+    return grades;
+  };
+
+  function calculateAverage(array) {
+    const intArray = array.map(item => parseInt(item));
+    console.log(intArray)
+    return intArray.reduce((total, grade) => total + grade, 0) / intArray.length;
+  }
+
+  function getLetterGrade(grade) {
+    switch (true) {
+      case (grade > 89):
+        return 'A';
+        break;
+      case (grade > 79):
+        return 'B';
+        break;
+      case (grade > 69):
+        return 'C';
+        break;
+      case (grade > 59):
+        return 'D'
+        break;
+      default:
+        return 'F';
+        break;
+    }
+  }
+
+  function displayAverage(average) {
+    DOMavg.innerHTML = average;
+  }
+
+  function displayGrades(grades) {
+    grades.map(grade => {
+      DOMgrades.innerHTML += `
+      <div class="level-item has-text-centered">
+      <div>
+        <p>${grade}</p>
+        <br>
+        <p>Grade ${grades.indexOf(grade) + 1}</p>
+        </div>
+      </div>
+      `
+    });
+  }
+
+  function displayLetter(letter) {
+    DOMletter.innerHTML = letter;
+  }
+
+  const gradesArray = callGrades();
+  const averageScore = calculateAverage(gradesArray);
+  const letterGrade = getLetterGrade(averageScore);
+  displayAverage(averageScore);
+  displayGrades(gradesArray);
+  displayLetter(letterGrade);
+});
