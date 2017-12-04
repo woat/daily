@@ -6,11 +6,12 @@
           <div class="columns">
             <div class="column is-2">
               <Checkboxes 
-                :test="testProp"
-                :checkboxes="checkboxes"/>
+                v-on:checked="populateFilters"
+                :chkboxes="chkboxes"/>
             </div>
             <div class="column">
-              <JsonTable :displayedInventory="displayedInventory"/>
+              <JsonTable 
+                :displayedInventory="displayedInventory"/>
             </div>
           </div>
         </div>
@@ -20,10 +21,10 @@
 </template>
 
 <script>
-import Checkboxes from './PartsComponents/Checkboxes'
-import JsonTable from './PartsComponents/JsonTable'
+import Checkboxes from './PartsComponents/Checkboxes.vue';
+import JsonTable from './PartsComponents/JsonTable.vue';
 
-function populateInventory () {
+function populateInventory() {
   const pop = [
     {
       manufacturer: 'Smoant',
@@ -32,7 +33,6 @@ function populateInventory () {
       type: 'VW/VT',
       score: '5',
       price: '1000',
-      visibility: true
     },
     {
       manufacturer: 'Smoant',
@@ -41,18 +41,16 @@ function populateInventory () {
       type: 'VW/VT',
       score: '5',
       price: '1200',
-      visibility: true
     },
     {
       manufacturer: 'VooPoo',
       model: 'Drag',
       size: 'Full',
       type: 'VW/VT',
-      score: '5',
+      score: '3',
       price: '1500',
-      visibility: true
-    }
-  ]
+    },
+  ];
   return pop;
 }
 
@@ -60,29 +58,26 @@ export default {
   name: 'Parts',
   components: {
     Checkboxes,
-    JsonTable
+    JsonTable,
   },
-  data () {
+  data() {
     return {
       inventory: {},
       displayedInventory: {},
-      checkboxes: { manu: 'gang' },
-      filters: [],
-      testProp,
-    }
-  },
-  watch: {
-    filters: function () {
-
-    }
+      chkboxes: {},
+      filters: {},
+    };
   },
   methods: {
+    populateFilters(data) {
+      console.log(data, 'dataRecievedparent')
+    }
   },
-  created: function () {
+  created() {
     this.inventory = populateInventory();
     this.displayedInventory = this.inventory;
-    this.testProp = this.inventory;
+    this.chkboxes = this.inventory;
     console.log('created');
-  }
-}
+  },
+};
 </script>

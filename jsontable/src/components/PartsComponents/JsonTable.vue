@@ -22,7 +22,7 @@
         </tr>
       </tfoot>
       <tbody>
-        <tr v-for="part in displayedInventory" v-show="part.visibility">
+        <tr v-for="part in displayedInventory">
           <td>
             {{part.manufacturer}}
           </td>
@@ -50,9 +50,11 @@
 <script>
 export default {
   name:'JsonTable',
+  props: [
+    'displayedInventory'
+  ],
   data: function () {
     return {
-      displayedInventory: {}
     }
   }
 }
