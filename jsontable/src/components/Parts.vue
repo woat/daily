@@ -1,86 +1,16 @@
 <template>
-  <div id="jsonTable">
+  <div id="Parts">
     <section class="hero is-small">
       <div class="hero-body">
         <div class="container">
           <div class="columns">
             <div class="column is-2">
-              <div class="card">
-                <div class="card-content">
-                  <h1>Filters</h1>
-                  <hr>
-                  <h1>Manufacturers</h1>
-                  <div v-for="box in checkboxes">
-                    <input type="checkbox" v-model="filters" :value="box.manufacturer"> {{box.manufacturer}}
-                  </div>
-                  <hr>
-                  <h1>Model</h1>
-                  <div v-for="box in checkboxes">
-                    <input type="checkbox" v-model="filters" :value="box.model"> {{box.model}}
-                  </div>
-                  <hr>
-                  <h1>Size</h1>
-                  <div v-for="box in checkboxes">
-                    <input type="checkbox" v-model="filters" :value="box.size"> {{box.size}}
-                  </div>
-                  <hr>
-                  <h1>Type</h1>
-                  <div v-for="box in checkboxes">
-                    <input type="checkbox" v-model="filters" :value="box.type"> {{box.type}}
-                  </div>
-                  <hr>
-                  <h1>Score</h1>
-                  <div v-for="box in checkboxes">
-                    <input type="checkbox" v-model="filters" :value="box.score"> {{box.score}}
-                  </div>
-                </div>
-              </div>
+              <Checkboxes 
+                :test="testProp"
+                :checkboxes="checkboxes"/>
             </div>
             <div class="column">
-              <table class="table is-striped is-fullwidth is-hoverable">
-                <thead>
-                  <tr>
-                    <th>Manufacturer</th> <!-- smok, vaperesso, smoant -->
-                    <th>Model</th> <!-- alien, tarot nano, battlestar -->
-                    <th>Size</th> <!-- full, nano, stick -->
-                    <th>Type</th> <!-- VW/VV, Mech, Squonk -->
-                    <th>Score</th>
-                    <th>Price</th>
-                  </tr>
-                </thead>
-                <tfoot>
-                  <tr>
-                    <th>Manufacturer</th> <!-- smok, vaperesso, smoant -->
-                    <th>Model</th> <!-- alien, tarot nano, battlestar -->
-                    <th>Size</th> <!-- full, nano, stick -->
-                    <th>Type</th> <!-- VW/VV, Mech, Squonk -->
-                    <th>Score</th>
-                    <th>Price</th>
-                  </tr>
-                </tfoot>
-                <tbody>
-                  <tr v-for="part in displayedInventory" v-show="part.visibility">
-                    <td>
-                      {{part.manufacturer}}
-                    </td>
-                    <td>
-                      {{part.model}}
-                    </td>
-                    <td>
-                      {{part.type}}
-                    </td>
-                    <td>
-                      {{part.size}}
-                    </td>
-                    <td>
-                      {{part.score}}
-                    </td>
-                    <td>
-                      {{Number((part.price / 100)).toLocaleString('en-US', {style: 'currency', currency: 'USD'})}}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+              <JsonTable :displayedInventory="displayedInventory"/>
             </div>
           </div>
         </div>
@@ -90,6 +20,9 @@
 </template>
 
 <script>
+import Checkboxes from './PartsComponents/Checkboxes'
+import JsonTable from './PartsComponents/JsonTable'
+
 function populateInventory () {
   const pop = [
     {
@@ -124,13 +57,18 @@ function populateInventory () {
 }
 
 export default {
-  name: 'jsonTable',
+  name: 'Parts',
+  components: {
+    Checkboxes,
+    JsonTable
+  },
   data () {
     return {
       inventory: {},
       displayedInventory: {},
-      checkbox:{},
-      filters: []
+      checkboxes: { manu: 'gang' },
+      filters: [],
+      testProp,
     }
   },
   watch: {
@@ -143,6 +81,7 @@ export default {
   created: function () {
     this.inventory = populateInventory();
     this.displayedInventory = this.inventory;
+    this.testProp = this.inventory;
     console.log('created');
   }
 }

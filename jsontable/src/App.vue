@@ -1,15 +1,15 @@
 <template>
   <div id="app">
-    <jsonTable/>
+    <Parts/>
   </div>
 </template>
 
 <script>
-import jsonTable from '@/components/jsonTable';
+import Parts from '@/components/Parts';
 
 export default {
   name: 'app',
-  components: { jsonTable }
+  components: { Parts }
 }
 </script>
 
