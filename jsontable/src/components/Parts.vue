@@ -23,36 +23,7 @@
 <script>
 import Checkboxes from './PartsComponents/Checkboxes.vue';
 import JsonTable from './PartsComponents/JsonTable.vue';
-
-function populateInventory() {
-  const pop = [
-    {
-      manufacturer: 'Smoant',
-      model: 'BattleStar',
-      size: 'Mini',
-      type: 'VW/VT',
-      score: '5',
-      price: '1000',
-    },
-    {
-      manufacturer: 'Smoant',
-      model: 'BattleStar',
-      size: 'Full',
-      type: 'VW/VT',
-      score: '5',
-      price: '1200',
-    },
-    {
-      manufacturer: 'VooPoo',
-      model: 'Drag',
-      size: 'Full',
-      type: 'VW/VT',
-      score: '3',
-      price: '1500',
-    },
-  ];
-  return pop;
-}
+import populateInventory from './PartsComponents/testdata';
 
 export default {
   name: 'Parts',
@@ -70,7 +41,46 @@ export default {
   },
   methods: {
     populateFilters(data) {
-      console.log(data, 'dataRecievedparent')
+      this.filters = data;
+    },
+    test() {
+      // Shorthand.
+      const chk = this.filters;
+      const inv = this.inventory;
+      // This object will be used for the comparisons/filters.
+      const fil = {};
+
+      // Remove props with no filters.
+      for (let prop in chk) {
+        if (chk[prop].length) fil[prop] = chk[prop]
+      }
+
+      const filLength = Object.keys(fil).length;
+
+      let filInv = inv.filter(item => {
+        let count = 0;
+        for (let prop in fil) {
+          // Each prop has an array of Strings to match.
+          fil[prop].forEach(filterProp => {
+            if (item[prop].includes(filterProp)) count += 1;
+          });
+        }
+        // A count is used to check the amount of props
+        // that must match. It is checked against the filLength
+        // which is how many props are in the filters object.
+        if (count === filLength) return true;
+      })
+
+      this.displayedInventory = filInv;
+    }
+  },
+  watch: {
+    filters: {
+      handler(filter) {
+        this.populateFilters(filter);
+        this.test()
+      },
+      deep: true,
     }
   },
   created() {
