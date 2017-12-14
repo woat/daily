@@ -1,0 +1,56 @@
+<template>
+  <div class="hello">
+    <div> Message from a GET: {{ msgGet }} </div>
+    <button @click="getData">Grab Data from Express</button>
+    <div> Message from a POST: {{ msgPost }}</div>
+    <input v-model="postThisMsg">
+    <button @click="postData(postThisMsg)">Post Data to Express</button>
+  </div>
+</template>
+
+<script>
+import TestService from '@/services/TestService'
+
+export default {
+  name: 'HelloWorld',
+  data () {
+    return {
+      msgGet: 'Welcome to Your Vue.js App',
+      postThisMsg: '',
+      msgPost: 'Waiting for a response...'
+    }
+  },
+  methods: {
+    async getData() {
+      console.log('getting data from express...')
+      const response = await TestService.testGet();
+      this.msgGet = response.data.msg;
+    },
+    async postData(payload) {
+      console.log('posting data from express...')
+      const response = await TestService.testPost({
+        msg: payload
+      });
+      console.log(response)
+    }
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+h1, h2 {
+  font-weight: normal;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
+}
+</style>
