@@ -31,8 +31,38 @@ export default {
       const response = await TestService.testPost({
         msg: payload
       });
-      console.log(response)
+      this.msgPost = response.data.msg;
+    },
+    // VUEX - Getters with params need be in methods
+    // ** Does not change actual state
+    testGetterParam(param) {
+      return this.$store.getters.testGetterParam(param);
+    },
+    // VUEX - Mutations with payload
+    // ** Does change actual state
+    changeStateWithPayload(payload) {
+      this.$store.commit('changeStateWithPayload', payload);
     }
+  },
+  computed: {
+    // VUEX - Simple getters can stay in computed
+    testGetter() {
+      return this.$store.getters.testGetter; 
+    },
+    changeState() {
+      this.$store.commit('changeState')
+    }
+  },
+  created() {
+    console.log(this.testGetter);
+    console.log(this.testGetterParam('Meeko'))
+    // VUEX - Access a mutation via commit
+    this.changeState;
+    console.log(this.testGetter);
+    this.changeStateWithPayload({
+      text: 'Payload Text'
+    })
+    console.log(this.testGetter);
   }
 }
 </script>

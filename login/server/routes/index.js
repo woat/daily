@@ -11,6 +11,8 @@ router.get('/', (req, res) => {
 
 router.post('/post', (req, res) => {
   // On a post request, use req.body to access the data from Vue
+  console.log(req.body)
+  req.body.msg = !req.body.msg ? req.body.msg = 'You need to send something' : req.body
   res.send(req.body);
 })
 
