@@ -1,16 +1,27 @@
 var express = require('express');
-const cors = require('cors');
-const morgan = require('morgan');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+// DEPENDENCIES I'VE ADDED
+const cors = require('cors')
+const jwt = require('jsonwebtoken')
+const passport = require('passport')
+
+// REQUIRE THE STRATEGY
+const strategy = ('./helpers/strategy')
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 
+// PASSPORT USES...
+passport.use('strategy-local', strategy);
+
 var app = express();
+// ...APP USES
+app.use(passport.initialize())
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -19,7 +30,6 @@ app.set('view engine', 'jade');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-app.use(morgan('combined'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());

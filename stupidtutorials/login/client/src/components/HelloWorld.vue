@@ -63,6 +63,10 @@ export default {
       text: 'Payload Text'
     })
     console.log(this.testGetter);
+    this.$store.dispatch('actionState');
+    console.log(this.testGetter);
+    this.$store.dispatch('actionStateD', 'owo');
+    console.log(this.testGetter);
   }
 }
 </script>
