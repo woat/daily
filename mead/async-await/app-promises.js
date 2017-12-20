@@ -47,7 +47,10 @@ const getGrades = (schoolId) => {
   })
 }
 
-getGrades(101)
-  .then(user => console.log(user))
-  .catch(e => console.log(e))
+const getStatus = async (userId) => {
+  const user = await getUser(userId)
+  const grades = await getGrades(user.schoolId)
+  return grades.map(grade => grade.grade).reduce((a, b) => a + b) / grades.length
+}
 
+getStatus(1).then(e => console.log(e))
