@@ -12,9 +12,11 @@ exports.register = async (req, res) => {
 }
 
 exports.login = async (req, res) => {
-  const user = await User.findByCredentials(req.body.email, req.body.password)
-  const token = await user.generateAuthToken()
-  res.header('x-auth', token).send(user)
+	const user = await User.findByCredentials(req.body.email, req.body.password)
+	const token = await user.generateAuthToken()
+	// res.header('x-auth', token).send(user)
+	// Should token be sent like this?
+	res.send({ token, user })
 }
 
 exports.me = (req, res) => {

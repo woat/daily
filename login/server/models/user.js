@@ -94,7 +94,7 @@ UserSchema.pre('save', async function (next) {
   const genSalt = promisify(bcrypt.genSalt)
   const getHash = promisify(bcrypt.hash)
 
-  if (!this.isModified) return next()
+  if (!this.isModified('password')) return next()
 
   const salt = await genSalt(10)
   const hash = await getHash(this.password, salt)
