@@ -8,14 +8,18 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     id: 'User ID',
-    token: 'Token'
+    token: 'Token',
+    isLoggedIn: false
   },
   getters: {
     getId: state => {
       return state.id
     },
-    tokenId: state => {
+    getToken: state => {
       return state.token
+    },
+    getLogged: state => {
+      return state.isLoggedIn
     }
   },
   mutations: {
@@ -25,6 +29,16 @@ export default new Vuex.Store({
     },
     mutateToken(state, token) {
       state.token = token
+    },
+    mutateLogged(state, logged) {
+      // Explicity state whether a user is logged in.
+      // Logged will either be T/F.
+      state.isLoggedIn = logged
+    },
+    resetStore(state) {
+      state.id = ''
+      state.token = ''
+      state.isLoggedIn = false
     }
   },
   actions: {
@@ -34,6 +48,12 @@ export default new Vuex.Store({
     },
     updateToken({ commit }, token) {
       commit('mutateToken', token)
+    },
+    updateLogged({ commit }, logged) {
+      commit('mutateLogged', logged)
+    },
+    updateReset({ commit }) {
+      commit('resetStore')
     }
   }
 })

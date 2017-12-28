@@ -12,11 +12,11 @@ exports.register = async (req, res) => {
 }
 
 exports.login = async (req, res) => {
-	const user = await User.findByCredentials(req.body.email, req.body.password)
-	const token = await user.generateAuthToken()
-	// res.header('x-auth', token).send(user)
-	// Should token be sent like this?
-	res.send({ token, user })
+  const user = await User.findByCredentials(req.body.email, req.body.password)
+  const token = await user.generateAuthToken()
+  // res.header('x-auth', token).send(user)
+  // Should token be sent like this?
+  res.send({ token, user })
 }
 
 exports.me = (req, res) => {
@@ -27,9 +27,9 @@ exports.me = (req, res) => {
   })
 }
 
-exports.logout = (req, res) => {
-  req.user.removeToken(req.token).then(() => {
-    res.status(200).send()
+exports.logout = async (req, res) => {
+  req.user.removeToken(req.body.token).then(() => {
+    res.status(200).send('Token deleted')
   }, () => {
     res.status(400).send()
   })

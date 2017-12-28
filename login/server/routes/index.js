@@ -16,6 +16,6 @@ router.post('/login', UserController.login)
 
 router.get('/me', authenticate, UserController.me)
 
-router.delete('/logout', authenticate, UserController.logout)
+router.post('/logout', authenticate, UserController.logout)
 
 module.exports = router

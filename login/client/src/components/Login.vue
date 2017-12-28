@@ -72,7 +72,8 @@ export default {
       const payload = await this.login(credentials)
       this.updateId(payload.data.user._id)
       this.updateToken(payload.data.token)
-      console.log(this.getId())
+      this.$store.dispatch('updateLogged', true)
+      this.$router.push('/home')
     },
     getId() {
       return this.$store.getters.getId
