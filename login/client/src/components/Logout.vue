@@ -15,7 +15,7 @@ export default {
       const response = await UserService.logout({ token })
       this.$store.dispatch('updateLogged', false)
       this.$store.dispatch('updateReset')
-      this.router.push('/home')
+      this.$router.push('/home')
       // Use this response to trigger success
       console.log(response)
     }

@@ -12,7 +12,7 @@ router.post('/test', (req, res) => res.send({test:'test'}))
 
 router.post('/register', UserController.register)
 
-router.post('/login', UserController.login)
+router.post('/login', errors(UserController.login))
 
 router.get('/me', authenticate, UserController.me)
 

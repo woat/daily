@@ -83,7 +83,10 @@ UserSchema.statics.findByCredentials = async function (email, password) {
   const compare = promisify(bcrypt.compare)
   const hashesMatch = await compare(password, user.password)
 
-  if (!hashesMatch) throw new Error()
+  // pass error to controller THEN throw it
+  if (!user || !hashesMatch) return {
+    error: 'The email address or password you entered is not valid'
+  }
 
   return user
 }

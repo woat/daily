@@ -17,5 +17,8 @@ export default {
      * in the store from Login and sends it to
      * the back-end and removes the token from
      * the user document in the database. */
+  },
+  register(credentials) {
+    return Api().post('/register', credentials)
   }
 }

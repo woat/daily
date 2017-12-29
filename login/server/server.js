@@ -14,6 +14,12 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use('/', routes)
 
+app.use(function (err, req, res, next) {
+  console.log('an error has occured')
+  console.log(err)
+  res.send(err)
+})
+
 app.listen(port, () => {
   console.log(`Started up at port ${port}`)
 });

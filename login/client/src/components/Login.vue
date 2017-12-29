@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="Login">
     <section class="hero is-fullheight">
       <div class="hero-body">
         <div class="container">
@@ -25,6 +25,8 @@
                       </span>
                     </p>
                   </div>
+
+                  <h1 v-if="error"> {{ error }}</h1>
 
                   <div class="field">
                     <p class="control">
@@ -52,24 +54,22 @@ export default {
   data () {
     return {
       email: '',
-      password: ''
+      password: '',
+      error: ''
     }
   },
   methods: {
-    login(credentials) {
-      const payload = {
-        email: credentials.email,
-        password: credentials.password
-      }
-      return UserService.login(payload)
-    },
     async loginUser() {
       const credentials = {
         email: this.email,
         password: this.password
       }
+      const payload = await UserService.login(credentials)
 
-      const payload = await this.login(credentials)
+      if (payload.data.error) {
+        return this.error = payload.data.error
+      }
+
       this.updateId(payload.data.user._id)
       this.updateToken(payload.data.token)
       this.$store.dispatch('updateLogged', true)
