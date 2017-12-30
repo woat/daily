@@ -45,9 +45,8 @@ UserSchema.methods.toJSON = function () {
 UserSchema.methods.generateAuthToken = function () {
   // const user = this
 
-  const access = 'auth'
-  // create a token containing a user.id + access
-  const token = jwt.sign({ _id: this._id.toHexString(), access }, 'SALTHERE').toString()
+  // create a token containing a user.id + exp
+  const token = jwt.sign({ _id: this._id.toHexString(), exp: Date.now() + //TODO set time , access }, 'SALTHERE').toString()
   this.tokens.push({ access, token })
   return this.save().then(() => token)
 }
